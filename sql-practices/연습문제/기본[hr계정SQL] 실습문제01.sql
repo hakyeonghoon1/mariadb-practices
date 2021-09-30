@@ -10,18 +10,10 @@ from employees
 order by hire_date asc;
 
 -- 문제 3. 여직원과 남직원은 각 각 몇 명이나 있나요?
-select 남자, 여자
-from
-(
-	select count(*) as 남자
-	from employees
-	where gender ='M'
-) as t1,
-(
-	select count(*) as 여자
-	from employees
-	where gender ='F'
-) t2;
+select gender, count(*)
+from employees
+group by gender
+;
 
 -- 문제 4. 현재 근무하고 있는 직원 수는 몇 명입니까? (salaries 테이블을 사용합니다.)
 select count(*)
