@@ -60,7 +60,6 @@ where title = 'Engineer' and to_date>now();
 
 
 -- 문제 11. 사번이 13250(Zeydy)인 지원이 직책 변경 상황을 시간순으로 출력해보세요.
-
 select emp_no, title, from_date, to_date
 from titles
 where emp_no = 13250
