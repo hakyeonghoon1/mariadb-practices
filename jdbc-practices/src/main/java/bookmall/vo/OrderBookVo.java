@@ -6,6 +6,7 @@ public class OrderBookVo {
 	private Long orderNo;
 	private int qty;
 	private int price;
+	
 	public Long getBookNo() {
 		return bookNo;
 	}

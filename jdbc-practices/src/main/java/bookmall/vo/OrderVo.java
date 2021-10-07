@@ -3,10 +3,10 @@ package bookmall.vo;
 public class OrderVo {
 
 	private Long no;
-	private String ord_no;
+	private String ordNno;
 	private int pay;
 	private String addr;
-	private Long member_no;
+	private Long memberNo;
 	
 	public Long getNo() {
 		return no;
@@ -14,11 +14,11 @@ public class OrderVo {
 	public void setNo(Long no) {
 		this.no = no;
 	}
-	public String getOrd_no() {
-		return ord_no;
+	public String getOrdNo() {
+		return ordNno;
 	}
-	public void setOrd_no(String ord_no) {
-		this.ord_no = ord_no;
+	public void setOrdNo(String ord_no) {
+		this.ordNno = ord_no;
 	}
 	public int getPay() {
 		return pay;
@@ -32,16 +32,16 @@ public class OrderVo {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public Long getMember_no() {
-		return member_no;
+	public Long getMemberNo() {
+		return memberNo;
 	}
-	public void setMember_no(Long member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(Long member_no) {
+		this.memberNo = member_no;
 	}
 	@Override
 	public String toString() {
-		return "OrderVo [no=" + no + ", ord_no=" + ord_no + ", pay=" + pay + ", addr=" + addr + ", member_no="
-				+ member_no + "]";
+		return "OrderVo [no=" + no + ", ord_no=" + ordNno + ", pay=" + pay + ", addr=" + addr + ", member_no="
+				+ memberNo + "]";
 	}
 
 }

@@ -6,10 +6,14 @@ import bookmall.dao.BookDao;
 import bookmall.dao.CartDao;
 import bookmall.dao.CategoryDao;
 import bookmall.dao.MemberDao;
+import bookmall.dao.OrderBookDao;
+import bookmall.dao.OrderDao;
 import bookmall.vo.BookVo;
 import bookmall.vo.CartVo;
 import bookmall.vo.CategoryVo;
 import bookmall.vo.MemberVo;
+import bookmall.vo.OrderBookVo;
+import bookmall.vo.OrderVo;
 
 public class BookMall {
 
@@ -116,6 +120,55 @@ public class BookMall {
 		List<CartVo> list4 = new CartDao().findAll();
 		for(CartVo vo4 : list4) {
 			System.out.println(vo4);
+		}
+		
+		// Order 데이터 생성 및 조회
+		OrderVo ordVo = null; 
+		
+		ordVo = new OrderVo();
+		ordVo.setOrdNo("A00001");
+		ordVo.setPay(13800);
+		ordVo.setAddr("부산시 금정구");
+		ordVo.setMemberNo(1L);
+		new OrderDao().insert(ordVo);
+
+		ordVo = new OrderVo();
+		ordVo.setOrdNo("A00002");
+		ordVo.setPay(13000);
+		ordVo.setAddr("부산시 부산진구");
+		ordVo.setMemberNo(2L);
+		new OrderDao().insert(ordVo);
+		
+		System.out.println("==== Order 리스트 ====");
+		
+		List<OrderVo> list5 = new OrderDao().findAll();
+		for(OrderVo vo5 : list5) {
+			System.out.println(vo5);
+		}
+		
+		// OrderBook 
+		
+		OrderBookVo obVo = null; 
+		
+		obVo = new OrderBookVo();
+		obVo.setBookNo(1L);
+		obVo.setOrderNo(1L);
+		obVo.setQty(1);
+		obVo.setPrice(13800);
+		new OrderBookDao().insert(obVo);
+
+		obVo = new OrderBookVo();
+		obVo.setBookNo(2L);
+		obVo.setOrderNo(2L);
+		obVo.setQty(1);
+		obVo.setPrice(13000);
+		new OrderBookDao().insert(obVo);
+		
+		System.out.println("==== OrderBook 리스트 ====");
+		
+		List<OrderBookVo> list6 = new OrderBookDao().findAll();
+		for(OrderBookVo vo6 : list6) {
+			System.out.println(vo6);
 		}
 	}
 

@@ -38,10 +38,10 @@ public class OrderDao {
 				
 				OrderVo vo = new OrderVo();
 				vo.setNo(no);
-				vo.setOrd_no(ordNo);
+				vo.setOrdNo(ordNo);
 				vo.setPay(pay);
 				vo.setAddr(addr);
-				vo.setMember_no(memberNo);
+				vo.setMemberNo(memberNo);
 				
 				result.add(vo);
 			}
@@ -78,14 +78,14 @@ public class OrderDao {
 			conn = getConnection();
 			
 			//3.SQL문 준비
-			String sql = "insert into member values(null, ?, ?, ?, ?)";
+			String sql = "insert into `order` values(null, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			//4.바인딩(binding)
-			pstmt.setString(1, vo.getName());
-			pstmt.setString(2, vo.getTel());
-			pstmt.setString(3, vo.getEmail());
-			pstmt.setString(4, vo.getPassword());
+			pstmt.setString(1, vo.getOrdNo());
+			pstmt.setInt(2, vo.getPay());
+			pstmt.setString(3, vo.getAddr());
+			pstmt.setLong(4, vo.getMemberNo());
 			
 			//5.SQL 실행			
 			int count = pstmt.executeUpdate();

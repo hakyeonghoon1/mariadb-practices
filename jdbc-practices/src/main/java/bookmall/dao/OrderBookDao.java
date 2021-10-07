@@ -79,11 +79,14 @@ public class OrderBookDao {
 			conn = getConnection();
 			
 			//3.SQL문 준비
-			String sql = "insert into category values(null, ?);";
+			String sql = "insert into ord_book values(?,?,?,?);";
 			pstmt = conn.prepareStatement(sql);
 			
 			//4.바인딩(binding)
-			pstmt.setString(1, vo.getName());
+			pstmt.setLong(1, vo.getBookNo());
+			pstmt.setLong(2, vo.getOrderNo());
+			pstmt.setInt(3, vo.getQty());
+			pstmt.setInt(4, vo.getPrice());
 			
 			//5.SQL 실행			
 			int count = pstmt.executeUpdate();
