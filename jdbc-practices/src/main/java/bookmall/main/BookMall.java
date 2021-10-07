@@ -18,13 +18,7 @@ import bookmall.vo.OrderVo;
 public class BookMall {
 
 	public static void main(String[] args) {
-		/*
-		new CategoryDao().insert(vo);
-		new CategoryDao().insert(vo);
-		new CategoryDao().insert(vo);
-		
-		new CategoryDao().findAll();
-		*/
+
 		// member 데이터 생성 및 조회
 		MemberVo mVo = null; 
 		mVo = new MemberVo();
