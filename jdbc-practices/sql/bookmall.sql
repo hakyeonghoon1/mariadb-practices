@@ -24,6 +24,7 @@ select book_no, member_no, qty from cart;
 select no, ord_no, pay, addr, member_no from `order`;
 select book_no, order_no, qty, price from ord_book;
 select * from ord_book;
+
 -- delete 
 delete from member;
 delete from category;
