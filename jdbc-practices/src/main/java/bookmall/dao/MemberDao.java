@@ -66,6 +66,97 @@ public class MemberDao {
 		return result;
 	}
 	
+	public boolean delete(MemberVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql = "delete from member where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setLong(1, vo.getNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	public boolean update(MemberVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql = "update member "
+					+ "set name = ifnull(?,name), "
+					+ "tel = ifnull(?, tel), "
+					+ "email = ifnull(?, email), "
+					+ "password = ifnull(?, password) "
+					+ "where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getTel());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getPassword());
+			pstmt.setLong(5, vo.getNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
 	public boolean insert(MemberVo vo) {
 		boolean result = false;
 		PreparedStatement pstmt = null;

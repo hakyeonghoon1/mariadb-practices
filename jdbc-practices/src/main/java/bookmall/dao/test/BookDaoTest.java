@@ -7,14 +7,35 @@ import bookmall.vo.BookVo;
 
 
 
+
 public class BookDaoTest {
 
 	public static void main(String[] args) {
 		insertTest();
+		updateTest();
+		deleteTest();
 		findAllTest();
 
 	}
+	
+	private static void updateTest() {
+		BookVo vo = new BookVo();
+		vo.setNo(12L);
+		vo.setCategoryNo(1L);
+		vo.setPrice(12121);
+		vo.setName("수정222");
+		
+		System.out.println(vo);
+		new BookDao().update(vo);
+	}
 
+	private static void deleteTest() {
+		BookVo vo = new BookVo();
+		vo.setNo(10L);
+		
+		new BookDao().delete(vo);
+		
+	}
 	private static void findAllTest() {
 		List<BookVo> list = new BookDao().findAll();
 		for(BookVo vo : list) {

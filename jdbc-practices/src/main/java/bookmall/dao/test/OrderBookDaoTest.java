@@ -10,9 +10,19 @@ import bookmall.vo.OrderBookVo;
 public class OrderBookDaoTest {
 
 	public static void main(String[] args) {
-		insertTest();
+		//insertTest();
+		deleteTest();
 		findAllTest();
 
+	}
+	
+	private static void deleteTest() {
+		OrderBookVo vo = new OrderBookVo();
+		vo.setBookNo(1L);
+		vo.setOrderNo(1L);
+		
+		new OrderBookDao().delete(vo);
+		
 	}
 
 	private static void findAllTest() {

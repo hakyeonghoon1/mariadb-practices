@@ -64,6 +64,90 @@ public class CategoryDao {
 		}
 		return result;
 	}
+	public boolean delete(CategoryVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql = "delete from category where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setLong(1, vo.getNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}	
+	public boolean update(CategoryVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql =  "update category "
+						+ "set name = ifnull(?, name) "
+						+ "where no = ? ";
+				
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setString(1, vo.getName());
+			pstmt.setLong(2, vo.getNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 	
 	public boolean insert(CategoryVo vo) {
 		boolean result = false;

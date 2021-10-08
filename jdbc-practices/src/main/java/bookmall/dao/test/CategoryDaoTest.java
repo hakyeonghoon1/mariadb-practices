@@ -2,17 +2,35 @@ package bookmall.dao.test;
 
 import java.util.List;
 
+
 import bookmall.dao.CategoryDao;
+
 import bookmall.vo.CategoryVo;
 
 public class CategoryDaoTest {
 
 	public static void main(String[] args) {
-		insertTest();
+		updateTest();
+		deleteTest();
+		//insertTest();
 		findAllTest();
 
 	}
+	private static void updateTest() {
+		CategoryVo vo = new CategoryVo();
+		vo.setNo(12L);
+		vo.setName("수정222");
 
+		new CategoryDao().update(vo);
+	}
+
+	private static void deleteTest() {
+		CategoryVo vo = new CategoryVo();
+		vo.setNo(10L);
+		
+		new CategoryDao().delete(vo);
+		
+	}
 	private static void findAllTest() {
 		List<CategoryVo> list = new CategoryDao().findAll();
 		for(CategoryVo vo : list) {

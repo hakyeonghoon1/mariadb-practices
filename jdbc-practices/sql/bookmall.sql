@@ -25,12 +25,35 @@ select no, ord_no, pay, addr, member_no from `order`;
 select book_no, order_no, qty, price from ord_book;
 select * from ord_book;
 
+
+-- update
+update member
+set name = ifnull('수정',name),
+	tel = ifnull(null, tel),
+    email = ifnull(null, email),
+    password = ifnull(null, password)
+where no = 8;
+
+update book
+set name = ifnull('333333', name),
+	price = ifnull(null, price),
+    category_no = ifnull(null,category_no)
+where no = 12;
+
+    
+
 -- delete 
 delete from member;
 delete from category;
 delete from book;
 delete from cart;
+delete from ord_book;
+delete from `order`;
 
+delete from member where no = 7;
+
+--
 ALTER TABLE member AUTO_INCREMENT=1;
 ALTER TABLE category AUTO_INCREMENT=1;
 ALTER TABLE book AUTO_INCREMENT=1;
+ALTER TABLE `order` AUTO_INCREMENT=1;

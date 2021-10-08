@@ -8,9 +8,28 @@ import bookmall.vo.MemberVo;
 public class MemberDaoTest {
 
 	public static void main(String[] args) {
-		insertTest();
+		//insertTest();
+		//deleteTest();
+		updateTest();
 		findAllTest();
+		
+	}
 
+	private static void updateTest() {
+		MemberVo vo = new MemberVo();
+		vo.setNo(12L);
+		vo.setName("수정222");
+		
+		System.out.println(vo);
+		new MemberDao().update(vo);
+	}
+
+	private static void deleteTest() {
+		MemberVo vo = new MemberVo();
+		vo.setNo(10L);
+		
+		new MemberDao().delete(vo);
+		
 	}
 
 	private static void findAllTest() {

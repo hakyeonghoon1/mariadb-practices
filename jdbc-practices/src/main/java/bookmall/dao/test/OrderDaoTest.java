@@ -9,11 +9,18 @@ import bookmall.vo.OrderVo;
 public class OrderDaoTest {
 
 	public static void main(String[] args) {
-		insertTest();
+		//insertTest();
+		deleteTest();
 		findAllTest();
 
 	}
-
+	private static void deleteTest() {
+		OrderVo vo = new OrderVo();
+		vo.setNo(6L);
+		
+		new OrderDao().delete(vo);
+		
+	}
 	private static void findAllTest() {
 		List<OrderVo> list = new OrderDao().findAll();
 		for(OrderVo vo : list) {

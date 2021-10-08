@@ -3,18 +3,30 @@ package bookmall.dao.test;
 import java.util.List;
 
 import bookmall.dao.CartDao;
+
 import bookmall.vo.CartVo;
+
 
 
 
 public class CartDaoTest {
 
 	public static void main(String[] args) {
-		insertTest();
+		//insertTest();
+		deleteTest();
 		findAllTest();
 
 	}
 
+	private static void deleteTest() {
+		CartVo vo = new CartVo();
+		vo.setBookNo(1L);
+		vo.setMemberNo(2L);
+		
+		new CartDao().delete(vo);
+		
+	}
+	
 	private static void findAllTest() {
 		List<CartVo> list = new CartDao().findAll();
 		for(CartVo vo : list) {

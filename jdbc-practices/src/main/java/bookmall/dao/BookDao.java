@@ -12,6 +12,7 @@ import bookmall.vo.BookVo;
 
 
 
+
 public class BookDao {
 	public List<BookVo> findAll() {
 		List<BookVo> result = new ArrayList<>();
@@ -64,6 +65,96 @@ public class BookDao {
 				e.printStackTrace();
 			}
 		}
+		return result;
+	}
+
+	public boolean delete(BookVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql = "delete from book where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setLong(1, vo.getNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}	
+	
+	public boolean update(BookVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql =  "update book "
+						+ "set name = ifnull(?, name), "
+						+ "price = ifnull(?, price), "
+						+ "category_no = ifnull(?, category_no) "
+						+ "where no = ? ";
+				
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setString(1, vo.getName());
+			pstmt.setInt(2, vo.getPrice());
+			pstmt.setLong(3, vo.getCategoryNo());
+			pstmt.setLong(4, vo.getNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return result;
 	}
 	

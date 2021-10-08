@@ -3,7 +3,7 @@ package bookmall.vo;
 public class BookVo {
 
 	private Long no;
-	private String name;
+	private String name = null;
 	private int price;
 	private Long categoryNo;
 	

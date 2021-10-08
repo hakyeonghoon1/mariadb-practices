@@ -140,7 +140,7 @@ public class BookMall {
 			System.out.println(vo5);
 		}
 		
-		// OrderBook 
+		// OrderBook 데이터 생성 및 조회
 		
 		OrderBookVo obVo = null; 
 		

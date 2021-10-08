@@ -68,6 +68,48 @@ public class OrderBookDao {
 		return result;
 	}
 	
+	public boolean delete(OrderBookVo vo) {
+		boolean result = false;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		try {
+			
+			//1.JDBC DRIVER 로딩
+			//2.연결하기
+			conn = getConnection();
+			
+			//3.SQL문 준비
+			String sql = "delete from ord_book where book_no = ? and order_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4.바인딩(binding)
+			pstmt.setLong(1, vo.getBookNo());
+			pstmt.setLong(2, vo.getOrderNo());
+
+			
+			//5.SQL 실행			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("error:"+e);
+		} finally {
+			try {
+				//clean up
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}	
+	
 	public boolean insert(OrderBookVo vo) {
 		boolean result = false;
 		PreparedStatement pstmt = null;
